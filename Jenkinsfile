@@ -11,11 +11,18 @@ pipeline {
                 git 'https://github.com/aggkartik9/invoice-generator.git'
             }
         }
-
+        
+        stage('daemon acess') {
+            steps {
+                echo 'giving acess to docker...'
+                sh 'usermod -aG docker $USER'
+            }
+        }
+        
         stage('Build Docker Image') {
             steps {
                 echo '🛠️ Building Docker image...'
-                sh 'sudo docker-compose build'
+                sh 'docker-compose build'
             }
         }
 
