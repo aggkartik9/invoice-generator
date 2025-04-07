@@ -2,40 +2,45 @@ pipeline {
     agent any
 
     environment {
-        COMPOSE_PROJECT_NAME = 'invoice-generator'
-    }
-
-    triggers {
-        githubPush()
+        COMPOSE_PROJECT_NAME = "react_nginx_ci"
     }
 
     stages {
-        stage('Checkout') {
+        stage('Checkout Code') {
             steps {
-                git 'https://github.com/aggkartik9/invoice-generator.git'
+                checkout scm
             }
         }
 
-        stage('Build & Run with Docker Compose') {
+        stage('Build Docker Image') {
             steps {
-                sh 'docker-compose down || true'
+                echo '🛠️ Building Docker image...'
                 sh 'docker-compose build'
+            }
+        }
+
+        stage('Run Docker Container') {
+            steps {
+                echo '🚀 Starting container...'
                 sh 'docker-compose up -d'
             }
         }
 
-        stage('Test App is Running') {
+        stage('Smoke Test') {
             steps {
-                // Replace this with actual health check if needed
-                sh 'curl -f http://localhost:3000 || echo "App not reachable"'
+                echo '🔍 Running basic app health check...'
+                script {
+                    sleep 5 // Give Nginx time to start
+                    sh 'curl -I http://localhost:3000 || true'
+                }
             }
         }
+    }
 
-        // Optional clean-up
-        // stage('Tear down') {
-        //     steps {
-        //         sh 'docker-compose down'
-        //     }
-        // }
+    post {
+        always {
+            echo '🧹 Cleaning up containers...'
+            sh 'docker-compose down'
+        }
     }
 }
