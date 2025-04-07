@@ -6,9 +6,9 @@ pipeline {
     }
 
     stages {
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
-                checkout scm
+                git 'https://github.com/your-username/your-repo.git'
             }
         }
 
@@ -37,10 +37,10 @@ pipeline {
         }
     }
 
-    post {
-        always {
-            echo '🧹 Cleaning up containers...'
-            sh 'docker-compose down'
-        }
-    }
+    //post {
+     //   always {
+      //      echo '🧹 Cleaning up containers...'
+        //    sh 'docker-compose down'
+       // }
+    //}
 }
