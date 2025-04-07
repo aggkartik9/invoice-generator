@@ -15,14 +15,14 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo '🛠️ Building Docker image...'
-                sh 'sudo docker-compose build'
+                sh 'docker-compose build'
             }
         }
 
         stage('Run Docker Container') {
             steps {
                 echo '🚀 Starting container...'
-                sh 'sudo docker-compose up -d'
+                sh 'docker-compose up -d'
             }
         }
 
@@ -40,7 +40,7 @@ pipeline {
     //post {
      //   always {
       //      echo '🧹 Cleaning up containers...'
-        //    sh 'sudo docker-compose down'
+        //    sh 'docker-compose down'
        // }
     //}
 }
