@@ -12,13 +12,6 @@ pipeline {
             }
         }
         
-        stage('daemon acess') {
-            steps {
-                echo 'giving acess to docker...'
-                sh 'usermod -aG docker $USER'
-            }
-        }
-        
         stage('Build Docker Image') {
             steps {
                 echo '🛠️ Building Docker image...'
