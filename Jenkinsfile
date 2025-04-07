@@ -27,7 +27,7 @@ pipeline {
         stage('Test App is Running') {
             steps {
                 // Replace this with actual health check if needed
-                sh 'curl -f http://localhost || echo "App not reachable"'
+                sh 'curl -f http://localhost:3000 || echo "App not reachable"'
             }
         }
 
