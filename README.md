@@ -1,36 +1,16 @@
-# Invoice Generator - React App
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+# 🚀 React App Deployment using Docker & Jenkins
+This project demonstrates how to build and deploy a React application using Docker and Jenkins, without using Kubernetes, Terraform, or Ansible.
 
-An Invoice creator project built with React. Add itemized items, configure quantity, prices, tax rates and discounts. Download Invoice as PDFs to your device. Uses [jspdf-react](https://www.npmjs.com/package/jspdf-react) to capture the data from the modal and covert it from canvas -> pdf.
+The app is built using React, served with Nginx, and packaged inside a Docker container. Jenkins automates the CI/CD pipeline, handling everything from code checkout to deployment. Docker ensures the application is containerized for consistent delivery across environments.
 
-### Live Demo
-https://invoice-generator-react.netlify.app/
+The project includes:
 
-### Screenshots
-<img src="https://i.imgur.com/wRetnxk.png" style="max-width: 100px; width: 100%; height: auto;">
-<img src="https://i.imgur.com/AZChaei.png" style="max-width: 100px; width: 100%; height: auto;">
-<img src="https://i.imgur.com/Bz3K3DE.png" style="max-width: 100px; width: 100%; height: auto;">
+A Dockerfile using a multi-stage build to compile and serve the app
 
-### Installation
+Nginx configuration to serve the React app
 
-```
-git clone https://github.com/johnuberbacher/invoice-generator
+A Jenkins pipeline (Jenkinsfile) that automates build and deployment steps
 
-npm install
+Optional integration points for GitHub
 
-npm start / npm run build
-```
-
-### To-Do
-- [x] Finish parsing data into Preview Modal
-
-- [x] Currency Picker
-
-- [x] Calculate Tax and Discounts
-
-- [ ] Store invoices in Firebase DB
-
-
-### Meta
-
-John Uberbacher – [johnuberbacher.com](https://johnuberbacher.com)
+This setup allows developers to continuously deliver updates to the application with minimal manual intervention.
