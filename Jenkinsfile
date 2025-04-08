@@ -22,7 +22,7 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 echo '🚀 Starting container...'
-                sh 'docker run -d -p 3000:80'
+                sh 'docker run -d -p 3000:80 react'
             }
         }
 
@@ -36,11 +36,4 @@ pipeline {
             }
         }
     }
-
-    //post {
-     //   always {
-      //      echo '🧹 Cleaning up containers...'
-        //    sh 'docker-compose down'
-       // }
-    //}
 }
