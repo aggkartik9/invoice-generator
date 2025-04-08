@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        COMPOSE_PROJECT_NAME = "react_nginx_ci"
+        PROJECT_NAME = "react_nginx_ci"
     }
 
     stages {
@@ -15,14 +15,14 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo '🛠️ Building Docker image...'
-                sh 'docker-compose build'
+                sh 'docker build -t react .'
             }
         }
 
         stage('Run Docker Container') {
             steps {
                 echo '🚀 Starting container...'
-                sh 'docker-compose up -d'
+                sh 'docker run -d -p 3000:80'
             }
         }
 
